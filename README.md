@@ -35,7 +35,6 @@ Follow these steps to set up the environment and run the inference service on yo
 ### 1. Repository Setup
 
 ```bash
-# Clone the repository
 git clone [https://github.com/gconsulting78-debug/machine-learning-zoomcamp-Capstone2b.git](https://github.com/gconsulting78-debug/machine-learning-zoomcamp-Capstone2b.git)
 cd deepfake_project
 ```
@@ -44,17 +43,22 @@ cd deepfake_project
 Virtual environments ensure that dependency versions remain consistent with the training environment and prevent conflicts with system-wide packages.
 
 ```bash
-# Create a virtual environment
 python3 -m venv venv
 ```
 ### 3. Activate the virtual environment
 #### On macOS/Linux:
-source venv/bin/activate  
+```bash
+source venv/bin/activate
+```
 #### On Windows: 
+```bash
 venv\Scripts\activate
+```
 
 ### 4. Install required packages from the requirements file
+```bash
 pip install -r requirements.txt
+```
 ### ⚠️ Compatibility Note: Keras 3 & TensorFlow
 This project is specifically configured to use **Keras 3.10.0** with **TensorFlow 2.15.0**. 
 
@@ -67,7 +71,6 @@ This project is specifically configured to use **Keras 3.10.0** with **TensorFlo
 ### 1. Start the Flask API
 
 ```bash
-# Start the service
 python app2.py
 ```
 ### 2. Testing the API
@@ -75,7 +78,6 @@ python app2.py
 Once the server is active, open a **separate terminal window** to test the prediction endpoint. Use the following `curl` command to send one of the sample images provided in the repository:
 
 ```bash
-# Send a sample fake image for prediction
 curl -X POST -F "image=@data/samples/fake_1.jpg" [http://127.0.0.1:9696/predict](http://127.0.0.1:9696/predict)
 ```
 **JSON Response:**
