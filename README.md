@@ -1,30 +1,31 @@
-# Deepfake Detection Suite - EfficientNetB0 (v2.0)
+# 🛡️ Deepfake Image Detection: EfficientNetB0 (v2.0)
 
-This project is a refined iteration of the initial deepfake detection Capstone project. It implements a production-ready Flask service using **EfficientNetB0** optimized for **224x224** image inputs. This version addresses previous limitations by utilizing a balanced dataset and incorporating forensic analysis into the development pipeline.
+## 📖 Project Overview
+This project is an advanced iteration of the initial Deepfake detection pipeline. It focuses on the binary classification of images to detect AI-generated content using a fine-tuned **EfficientNetB0** architecture. By analyzing digital textures and frequency artifacts, the model identifies subtle signatures left by GANs and diffusion models that are often invisible to the human eye.
 
-**Link to Previous Attempt (v1.0):** [Capstone2 v1.0](https://github.com/gconsulting78-debug/machine-learning-zoomcamp-Capstone2.git)
+This version (v2.0) improves upon the previous submission by utilizing a perfectly balanced dataset and a production-ready Flask API for real-time inference.
 
----
-
-## 📊 Version Improvements
-* **Balanced Dataset:** Trained on 140,000 images (70k Real / 70k Fake) to eliminate class bias.
-* **Optimized Architecture:** Utilizes EfficientNetB0 at its native resolution (224x224) for peak weight efficiency and performance.
-* **Forensic EDA:** Analysis includes Error Level Analysis (ELA) and Fast Fourier Transform (FFT) to identify digital fingerprints of GAN-generated content.
+### 🔗 Project Links
+- **Previous Attempt (v1.0):** [Capstone2 v1.0 Repository](https://github.com/gconsulting78-debug/machine-learning-zoomcamp-Capstone2.git)
+- **Model Architecture:** EfficientNetB0 (Native 224x224 input)
+- **Dataset:** 140,000 High-Resolution Images (70k Real / 70k Fake)
 
 ---
 
 ## 📂 Project Structure
+The repository is organized for portability and clear evaluation:
+
 ```text
 deepfake_project/
 ├── models/
-│   └── best_model_finetuned.keras  # Fine-tuned EfficientNetB0 Model
+│   └── best_model_finetuned.keras  # Fine-tuned EfficientNetB0 weights
 ├── data/
-│   └── samples/                   # Test images for API validation
+│   └── samples/                   # Sample images for API testing
 ├── app2.py                        # Flask API Service
-├── requirements.txt               # Project Dependencies
+├── requirements.txt               # Version-locked dependencies
 ├── .gitignore                     # Git exclusion rules
-└── README.md                      # Project Documentation
-
+└── README.md                      # Project documentation
+```
 ---
 
 ## 🚀 Local Execution Guide
@@ -32,42 +33,43 @@ deepfake_project/
 Follow these steps to set up the environment and run the inference service on your local machine.
 
 ### 1. Repository Setup
+
 ```bash
 # Clone the repository
 git clone [https://github.com/gconsulting78-debug/machine-learning-zoomcamp-Capstone2b.git](https://github.com/gconsulting78-debug/machine-learning-zoomcamp-Capstone2b.git)
 cd deepfake_project
-2. Environment Configuration
-Virtual environments ensure that dependency versions remain consistent with the training environment.
+```
+### 2. Environment Configuration
 
-Bash
+Virtual environments ensure that dependency versions remain consistent with the training environment and prevent conflicts with system-wide packages.
 
-# Create and activate virtual environment
+```bash
+# Create a virtual environment
 python3 -m venv venv
-source venv/bin/activate
+```
+### 3. Activate the virtual environment
+#### On macOS/Linux:
+source venv/bin/activate  
+#### On Windows: 
+venv\Scripts\activate
 
-# Install required packages
+### 4. Install required packages from the requirements file
 pip install -r requirements.txt
-🖥️ Running the Inference Server
-1. Start the Flask API
-Bash
 
+---
+
+## 🖥️ Running the Inference Server
+
+### 1. Start the Flask API
+
+```bash
 # Start the service
 python app2.py
-The service will initialize the EfficientNetB0 model and listen on http://127.0.0.1:5000.
+```
+### 2. Testing the API
 
-2. Testing the API
-Open a separate terminal window and use curl to send a sample image for prediction:
+Once the server is active, open a **separate terminal window** to test the prediction endpoint. Use the following `curl` command to send one of the sample images provided in the repository:
 
-Bash
-
-curl -X POST -F "image=@data/samples/fake_1.jpg" [http://127.0.0.1:5000/predict](http://127.0.0.1:5000/predict)
-🛠 Technical Specifications
-Architecture: EfficientNetB0 (ImageNet weights)
-
-Input Dimension: 224 x 224 x 3 (RGB)
-
-Preprocessing: Standardized pixel scaling [0, 255]
-
-Forensic EDA: Error Level Analysis (ELA) and FFT Frequency checks.
-
-API Service: Flask with JSON response handling.
+```bash
+# Send a sample fake image for prediction
+curl -X POST -F "image=@data/samples/fake_1.jpg" [http://127.0.0.1:9696/predict](http://127.0.0.1:9696/predict)
