@@ -73,3 +73,13 @@ Once the server is active, open a **separate terminal window** to test the predi
 ```bash
 # Send a sample fake image for prediction
 curl -X POST -F "image=@data/samples/fake_1.jpg" [http://127.0.0.1:9696/predict](http://127.0.0.1:9696/predict)
+```
+**JSON Response:**
+
+```json
+{
+  "confidence": "40.54%",
+  "prediction": "Fake",
+  "status": "success"
+}
+```
