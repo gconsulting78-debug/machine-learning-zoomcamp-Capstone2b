@@ -1,4 +1,5 @@
 import io
+import os
 import numpy as np
 import tensorflow as tf
 from flask import Flask, request, jsonify
@@ -8,8 +9,8 @@ from tensorflow.keras.preprocessing.image import img_to_array
 app = Flask(__name__)
 
 # Load EfficientNetB0 model
-MODEL_PATH = '/Users/sandyricha/machine-learning-zoomcamp-homework/Capstone2/deepfake_project/Models/best_model_finetuned.keras'
-model = tf.keras.models.load_model(MODEL_PATH)
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+MODEL_PATH = os.path.join(BASE_DIR, 'models', 'best_model_finetuned.keras')
 
 def prepare_image(image_bytes):
     # 1. Load image and convert to RGB
@@ -50,6 +51,6 @@ def predict():
         'confidence': f"{confidence:.2%}"
     })
 
-# Start Flask in a background thread for Colab compatibility
-import threading
-threading.Thread(target=app.run, kwargs={'host':'0.0.0.0', 'port':9696}).start()
+# 3. Standard Flask entry point 
+ if __name__ == '__main__':
+     app.run(host='0.0.0.0', port=9696, debug=False)
