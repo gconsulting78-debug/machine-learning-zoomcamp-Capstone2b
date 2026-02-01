@@ -55,7 +55,11 @@ venv\Scripts\activate
 
 ### 4. Install required packages from the requirements file
 pip install -r requirements.txt
+### ⚠️ Compatibility Note: Keras 3 & TensorFlow
+This project is specifically configured to use **Keras 3.10.0** with **TensorFlow 2.15.0**. 
 
+* **Why?** This ensures the specific fine-tuning layers and model weights from version 2.0 load correctly without serialization errors.
+* **Environment Tip:** If you encounter a `dependency conflict` warning during installation, it is due to the overlap between TensorFlow's internal Keras and the standalone Keras 3 package. The provided `app2.py` is designed to handle this specifically in a Python 3.10+ environment.
 ---
 
 ## 🖥️ Running the Inference Server
